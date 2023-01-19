@@ -67,7 +67,9 @@ public class SinglyLinkedList {
 			return;
 		}
 		System.out.print("[");
+		//traversing the node using the next reference until the end .
 		while(presentNode!=null) {
+			//print the current node on console using print function.
 			System.out.print(presentNode.value+" ");
 			presentNode=presentNode.next;
 		}
@@ -75,15 +77,23 @@ public class SinglyLinkedList {
 		System.out.println();
 	}
 	
+	
+	//insert(position of the node to be insert & value of the node) method adds the node at the specific position on the list.
 	public void insert(int position,int value) throws Exception{
+		//check the position is inside the list.
 		if(position>size) {
+			
+			//if not throws the exception state that the position is not in the list.
 			throw new Exception("position is not valid!");
 		}
+		
+		//if the position is zero call the addFirst() method,this will add the node at the front of the list.
 		if(position==0) {
 			addFirst(value);
 			return;
 		}
 		else {
+			//create a new ,current & temperory nodes .
 			Node insertNode=new Node(value);
 			Node current=null;
 			Node temp=head;
