@@ -178,7 +178,6 @@ public class SinglyLinkedList {
 			}
 			Node current=head;
 			int traverseVar=1;
-			Node temp=current.next;
 			//traverse before till the position
 			while(traverseVar!=position1) {
 				if(current==null) {
@@ -190,6 +189,7 @@ public class SinglyLinkedList {
 				traverseVar++;
 			}
 			//make the temp to point the next node to the deleting node.
+			Node temp=current.next;
 			temp=temp.next;
 			//make the current node's next to point the next node to the deleting node.
 			current.next=temp;
