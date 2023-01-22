@@ -20,13 +20,9 @@ public class ChatBot  {
 				stk.pop();
 				//stk.pop();
 				input=stk.peek();
-				System.out.println(stk);
 				count=count-2;
-				System.out.println("at 0 count:"+count);
 				continue;
 			}
-			System.out.println(stk);
-			System.out.println("count:"+count);
 			if(input==1&&count==0) {
 				Thread.sleep(500);
 				//language settings.
