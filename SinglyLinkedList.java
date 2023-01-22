@@ -50,6 +50,9 @@ public class SinglyLinkedList {
 					Node insertNode = new Node(value);
 					insertNode.next=head;//make the insert node to point the head.
 					head=insertNode;//And the head to the insert node.
+					//if the new node to be the first node then point the new node to tail.
+					if(head==null)
+						tail=insertNode;
 					//increment the size by one.
 					size++;
 			}
