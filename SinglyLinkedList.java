@@ -1,4 +1,14 @@
 //creating of a singly linked list
+/**
+ * addNode()
+ * addFirst()
+ * insert(position,value)
+ * toString()
+ * display()
+ * deleteFirst()
+ * deleteLast()
+ * delete(position)
+ * size()*/
 public class SinglyLinkedList {
 	//Represent the head and tail nodes of the singly linked list.
 	public Node head= null;
@@ -35,6 +45,49 @@ public class SinglyLinkedList {
 		size++;
 	}
 	
+	//addFirst() function adds the element in the first position of to the list.
+			public void addFirst(int value) {
+					Node insertNode = new Node(value);
+					insertNode.next=head;//make the insert node to point the head.
+					head=insertNode;//And the head to the insert node.
+					//increment the size by one.
+					size++;
+			}
+		
+		//insert(position of the node to be insert & value of the node) method adds the node at the specific position on the list.
+		public void insert(int position,int value) throws Exception{
+			//check the position is inside the list.
+			if(position>size) {
+				
+				//if not throws the exception state that the position is not in the list.
+				throw new Exception("position is not valid!");
+			}
+			
+			//if the position is zero call the addFirst() method,this will add the node at the front of the list.
+			if(position==0) {
+				addFirst(value);
+				return;
+			}
+			else {
+				//create a new ,current & temporary nodes .
+				Node insertNode=new Node(value); //insert node holds the value of the new node to be inserted.
+				Node current=null;
+				Node temp=head;//make the temporary node to point the head and traverse until before the position.
+				int traverseVar=0;
+				while(traverseVar<position) {
+					current=temp;//now the current node points the previous node of the position.
+					temp=temp.next;//make the temporary node to point the node at position.
+					traverseVar++;
+				}
+				//insert the reference of the new node to the pervious node's next.
+				current.next=insertNode;
+				//insert the reference of the  node that is already at that position to the newNode's next.
+				insertNode.next=temp;
+				
+			}
+			//increment the size by 1.
+			size++;
+		}
 	
 	//toString() method returns the list as a single string.
 	public String toString() {
@@ -78,87 +131,72 @@ public class SinglyLinkedList {
 	}
 	
 	
-	//insert(position of the node to be insert & value of the node) method adds the node at the specific position on the list.
-	public void insert(int position,int value) throws Exception{
-		//check the position is inside the list.
-		if(position>size) {
-			
-			//if not throws the exception state that the position is not in the list.
-			throw new Exception("position is not valid!");
-		}
-		
-		//if the position is zero call the addFirst() method,this will add the node at the front of the list.
-		if(position==0) {
-			addFirst(value);
-			return;
-		}
-		else {
-			//create a new ,current & temperory nodes .
-			Node insertNode=new Node(value);
-			Node current=null;
-			Node temp=head;
-			int traverseVar=0;
-			while(traverseVar<position) {
-				current=temp;
-				temp=temp.next;
-				traverseVar++;
-			}
-			current.next=insertNode;
-			insertNode.next=temp;
-			
-		}
-		size++;
-	}
 
+	//deleteFirst() delete's the first element from the list.
 	public void deleteFirst()throws Exception{
+		//check if the list is empty throw exception 
 		if(head==null) {
 			throw new Exception("there is no element to Delete");
 		}
+		//make the head to point the next node and sever the ties between the fist node & list.
 		head=head.next;
+		//Decrement the size by 1.
 		size--;
 	}
 	
+	
+	//method delete's the last element from the list.
 	public void deleteLast() throws Exception {
 		Node current=head;
 		int traverseVar=1;
+		
+		//traverse till the second last node.
 		while(traverseVar!=size-1) {
 			if(current==null) {
+				//list is empty throw the exception.
 				throw new Exception("No elements to delete"+size);
 			}
 			current=current.next;
 			traverseVar++;
 		}
+		//make the second lastNode's next to point null.
 		current.next=null;
+		//decrement the size by 1.
 		size--;
 		
 	}
+	
+	//delete(position) deletes the node in the specific position.
 	public	void delete(int position1) throws Exception {
+			if(position1==size-1)//if it's a last position call deleteLast()
+			{
+				deleteLast();
+				return;
+			}
 			Node current=head;
 			int traverseVar=1;
+			Node temp=current.next;
+			//traverse before till the position
 			while(traverseVar!=position1) {
 				if(current==null) {
+					//list is empty throw the exception.
 					throw new Exception("out of the range:position"+position1);
 				}
+				//make the current node to point the node  previous to the deleting node.
 				current=current.next;
 				traverseVar++;
 			}
-			Node temp=current.next;
+			//make the temp to point the next node to the deleting node.
 			temp=temp.next;
+			//make the current node's next to point the next node to the deleting node.
 			current.next=temp;
+			//decrement the size by 1.
 			size--;
 		}
 	
+	//size() function returns the size of the list.
 	public int size() {
 		return size;
 	}
 	
-	public void addFirst(int value) {
-			Node insertNode = new Node(value);
-			insertNode.next=head;
-			head=insertNode;
-			if(tail==null) {
-				tail=insertNode;
-			}
-			size++;
-	}
 }
