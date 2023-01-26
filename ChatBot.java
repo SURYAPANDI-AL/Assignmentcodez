@@ -1,4 +1,4 @@
-package Services;
+
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -46,9 +46,9 @@ public class ChatBot  {
 				Thread.sleep(500);
 				System.out.println("Press 2 - Value added Service.\n");
 				Thread.sleep(500);
-				System.out.println("Press 3 - Complaints.");
+				System.out.println("Press 3 - Complaints.\n");
+                Thread.sleep(500);
 				System.out.println("press 0 - Go back.\n");
-				Thread.sleep(500);
 				Thread.sleep(500);
 				System.out.println("\npress 5 - Exit.\n");
 				count++;
@@ -62,7 +62,7 @@ public class ChatBot  {
 			else if(input==3&&count==2) {
 				Thread.sleep(500);
 				//Services.
-				System.out.println("complaints here.we will contect you as soon as possible.\n");
+				System.out.println("Your complaints are here.we will contect you as soon as possible.\n");
 				
 				break;
 			}
@@ -85,7 +85,7 @@ public class ChatBot  {
 			else if((input==2||input==1||input==3)&&count==3) {
 				Thread.sleep(500);
 				//RecomendedServices.
-				System.out.println("Thanks for making the subscribtion Enjoy the Service.....\nValidity:one month by today.\n);
+				System.out.println("Thanks for making the subscribtion Enjoy the Service.....\nValidity:one month by today.\n");
 				break;
 			}
 			else {
@@ -93,6 +93,7 @@ public class ChatBot  {
 				System.out.println("Enter a valid input.");
 				stk.pop();
 			}
+            System.out.print("enter:");
 			input=sc.nextInt();
 			
 		}
