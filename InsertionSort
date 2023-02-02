@@ -1,0 +1,22 @@
+/*
+*in first it consider the first element as sorted and keep it as a key value. the iteration starts from i+1 th element it will then 
+*traverse in reverse for each iteration and check the element and its adjacent if the element is small the element get replaced.
+*when the condition fails the next element to the current element will be assign to the key.
+*/
+class InsertionSort
+{
+	public void insertionSort(int [] nums)
+	{
+		for(int i=1;i<nums.length;i++)
+		{
+		    int key=nums[i];
+		    int j=i-1;
+		    while(j>=0&&nums[j]>key)
+		    {
+		    	nums[j+1]=nums[j];
+		    	j--;
+		    }
+		    nums[j+1]=key;
+		}
+	}	
+}
