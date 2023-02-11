@@ -1,0 +1,96 @@
+package sortings;
+
+import java.util.*;
+
+/*
+ * MergeSort-->based on divide and conquer.
+ * Worst complexity: n*log(n)
+ * Average complexity: n*log(n)
+ * Best complexity: n*log(n)
+ * Space complexity: n
+ * Method: Merging
+ * Stable: Yes
+ * **/
+
+public class MergeSort
+{
+	public void conquer(int[]nums, int start,int mid,int end )
+	{
+		//create a temporary array to store the sorted array elements.
+		int [] merge = new int [end-start+1];
+		
+		//create the variables to store the starting of two halves and temporary array.
+		int index1=start, index2=mid+1 , mergeIndex=0;
+		
+		//run the loop until the end of the two halves.
+		while(index1<=mid && index2<=end )
+		{
+			//sort the elements on the two halves and store it on the temporary array.
+			if(nums[index1]<=nums[index2])
+			{
+				merge[mergeIndex++]=nums[index1++];
+			}
+			else
+			{
+				merge[mergeIndex++]=nums[index2++];
+			}
+		}
+		
+		//if the first half have remaining elements store them in the remaining indices;
+		while(index1<=mid)
+		{
+			merge[mergeIndex++]=nums[index1++];
+		}
+		
+		//if the second half have remaining elements store them in the remaining indices;
+		while(index2<=end)
+		{
+			merge[mergeIndex++]=nums[index2++];
+		}
+		
+		//replace the old values with the new sorted values in the array.
+		for(int i=0,j=start;i<merge.length;i++,j++)
+		{
+			nums[j]=merge[i];
+		}
+	}
+	public void divide( int[]nums, int start, int end )
+	{
+		
+		//make base condition that the starting index should not exceed the ending ending index;
+		if( start >= end )
+		{
+			return;
+		}
+		
+		//find the middle element of the array;
+		int mid = start + ( end - start ) / 2;
+		
+		//call recursively the first half of the input array;
+		divide(nums,start,mid);
+		
+		//call recursively the second half of the input array;
+		divide(nums,mid+1,end);
+		
+		//call the conquer method to sort the divided array;
+		conquer(nums,start,mid,end);
+		
+	}
+	
+	public void mergesort(int [] nums)
+	{
+		//calling the divide method to seperate the nums to small groups;
+		divide(nums,0,nums.length-1);
+	}
+	
+	public static void main (String[]args)
+	{
+		int [] nums = {98,45,43,7,24,98,3,9};
+		
+		MergeSort ms= new MergeSort();
+		
+		ms.mergesort(nums);
+		
+		System.out.println(Arrays.toString(nums));
+	}
+}
