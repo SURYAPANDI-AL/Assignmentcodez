@@ -1,0 +1,59 @@
+package sortings;
+
+import java.util.*;
+/**
+ * Quick Sort-->time complexity O(n*logn)
+ * Divide and conquer based on pivot point.*/
+public class QuickSort
+{
+	//quick_ort function receives the array and its starting and ending index;
+    public void quick_sort(int [] nums,int start,int end )
+    {
+    	//if the starting and ending doesn't overlap then move to find the pivot point .
+    	if(start<end)
+    	{
+    		//initialize the p value by calling the pivot method.
+    		int p=pivot(nums,start,end);
+    		
+    		//make a recursive by giving the input array of the first half.
+    		quick_sort(nums,start,p-1);
+    		
+    		//make a recursive by giving the input array of the second half.
+    		quick_sort(nums,p+1,end);
+    	}
+    }
+    public int pivot(int [] nums,int start,int end)
+    {
+    	//initialize the last element as the pivot point .
+    	int pivot=nums[end];
+    	
+    	//mark i var as the previous to the starting point inorder to mark the last smallest element compare to pivot. 
+    	int i=(start-1);
+	
+    	//loop all the elements till end of array and replace the largest value with the smallest.
+    	for(int j=start;j<=end;j++)
+    	{
+    		
+    		if(nums[j]<pivot)
+    		{
+    			
+    			i++;
+    			
+    			//swap the large element with i.
+    			nums[i]=nums[j]+nums[i]-(nums[j]=nums[i]);
+    		}
+    	}
+    	//at end swap the pivot with the i+1 th element.
+    	nums[i+1]=nums[end]+nums[i+1]-(nums[end]=nums[i+1]);
+    	
+    	//return the pivot position.
+    	return (i+1);
+    }
+    public static void main (String[]args)
+    {
+    	int nums[] = {7,8,55,3,24,5,1};
+    	QuickSort s=new QuickSort();
+    	s.quick_sort(nums,0,nums.length-1);
+    	System.out.println(Arrays.toString(nums));
+    }
+}
